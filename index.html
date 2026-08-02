@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The New Cities - Synth. Rock. Now.</title>
+    <style>
+        /* --- General Setup & Typography --- */
+        :root {
+            --neon-pink: #ff007a;
+            --neon-cyan: #00f0ff;
+            --bg-dark: #09090b;
+            --text-light: #e0e0e0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            /* Le padding du haut est à 0 pour coller la photo au plafond */
+            padding: 0 20px 40px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        /* --- En-tête (Photo + Sociaux) --- */
+        .top-header {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- Layout Columns --- */
+        .left-column {
+            flex: 1 1 45%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .right-column {
+            flex: 1 1 50%;
+        }
+
+        /* --- Elements --- */
+        .band-photo {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 3px solid var(--neon-cyan);
+        }
+
+        p {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .highlight-cyan { color: var(--neon-cyan); }
+        .highlight-pink { color: var(--neon-pink); }
+
+        /* --- Achievements List --- */
+        .achievements {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+        }
+
+        .achievements li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .achievement-text h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        .achievement-text p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* --- Réseaux Sociaux --- */
+        .social-row {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        .social-link {
+            color: #ffffff;
+            font-size: 2.5rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s, color 0.2s, text-shadow 0.2s;
+        }
+
+        .social-link:hover {
+            color: var(--neon-pink);
+            transform: scale(1.15);
+            text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+        }
+
+        /* --- Contact Box --- */
+        .contact-box {
+            width: 100%;
+            /* --- border: 1px solid var(--neon-cyan); --- */
+            border-radius: 5px;
+            padding: 20px 30px;
+            margin-top: 25px;
+            box-sizing: border-box;
+            /* --- background-color: rgba(0, 240, 255, 0.02); --- */
+            display: flex;
+            align-items: center;
+            justify-content: space-around; /* Sépare les 3 colonnes également */
+            gap: 20px; 
+        }
+
+        .contact-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-cassette {
+            max-width: 120px;
+            height: auto;
+            flex-shrink: 0; 
+        }
+
+        .contact-text-col {
+            text-align: left;
+        }
+
+        .contact-text-col h2 {
+            margin-top: 0px;
+            margin-bottom: 5px;
+            font-weight: bold; /* Corrigé de font-style: bold; à font-weight: bold; */
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .contact-text-col p {
+            margin: 5px 0;
+            font-size: 1.05rem;
+        }
+
+        .contact-link {
+            color: inherit; /* Conserve la couleur du texte parent */
+            text-decoration: none; /* Retire le soulignage par défaut */
+            transition: color 0.2s;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline; /* Ajoute le soulignage au survol */
+        }
+
+        /* --- Spotify Section --- */
+        .spotify-section {
+            width: 100%;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .spotify-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        /* --- Video Section --- */
+        .video-section {
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        /* Grille pour les vidéos */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            width: 100%;
+        }
+
+        /* --- Styles pour les fausses intégrations YouTube --- */
+        .video-link {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+        }
+
+        .video-link img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-bottom: 3px solid var(--neon-cyan);
+            border-radius: 6px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            transition: opacity 0.3s;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem; 
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 0 15px rgba(0,0,0,0.8);
+            transition: all 0.3s ease;
+        }
+
+        .video-link:hover img {
+            opacity: 0.7;
+        }
+
+        .video-link:hover .play-button {
+            color: var(--neon-pink);
+            transform: translate(-50%, -50%) scale(1.15);
+            text-shadow: 0 0 20px var(--neon-pink);
+        }
+
+        /* --- Footer Bottom --- */
+        .footer-bottom {
+            margin-top: 5px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .spotify-grid { grid-template-columns: 1fr; } /* Spotify s'empile sur mobile */
+            .video-grid { grid-template-columns: 1fr; } /* Vidéos s'empilent sur mobile */
+            .contact-box { flex-direction: column; text-align: center; gap: 20px; }
+            .contact-text-col { text-align: center; } /* Le texte se centre sur mobile */
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="top-header">
+            <img src="assets/band-photo.jpg" alt="The New Cities" class="band-photo">
+
+            <div class="social-row">
+                <a href="https://www.youtube.com/thenewcities" class="social-link" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://open.spotify.com/artist/4ukbmsqidRruP2Is95kkTA" class="social-link" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
+                <a href="https://music.apple.com/ca/artist/the-new-cities/305493685" class="social-link" title="Apple Music"><i class="fa-solid fa-music"></i></a>
+                <a href="https://www.facebook.com/thenewcities" class="social-link" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com/thenewcities/" class="social-link" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://x.com/thenewcities" class="social-link" title="X"><i class="fa-brands fa-twitter"></i></a>
+            </div>
+        </div>
+
+        <!-- COLONNE DE GAUCHE -->
+        <div class="left-column">
+            <p>Originally from Trois-Rivières, the band established itself as a major player in the 2010s Canadian music scene. Their unique style blends classic synth-pop with dance and punk energy. This signature sound earned them appearances in cult television series such as “Gossip Girl” and “Degrassi”.</p>
+            <p>Renowned for their explosive live performances, they have shared the stage with international stars such as Katy Perry, Simple Plan, and Metric.</p>
+            <p>In 2011, following the release of their second album, Kill the Lights, they opened for Avril Lavigne's Canadian tour (Black Star Tour), cementing their presence after two years of intensive touring in Canada, France, and the United Kingdom.</p>
+        </div>
+
+        <!-- COLONNE DE DROITE -->
+        <div class="right-column">
+
+            <ul class="achievements">
+                <li>
+                    <img src="assets/icon-vinyl.png" alt="Gold Record" class="icon">
+                    <div class="achievement-text">
+                        <h3 class="highlight-cyan">GOLD RECORD</h3>
+                        <p>for the song "Dead End Countdown".</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="assets/icon-star.png" alt="Awards" class="icon">
+                    <div class="achievement-text">
+                        <h3 class="highlight-pink">AWARDS</h3>
+                        <p>a SOCAN songwriting award and several prestigious nominations (JUNO, ADISQ, MuchMusic Video Awards).</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="assets/icon-lightning.png" alt="Collaborations" class="icon">
+                    <div class="achievement-text">
+                        <h3 class="highlight-cyan">COLLABORATIONS</h3>
+                        <p>the single "Heatwave" (2011) was co-written with the collective The Matrix and features a melody from Baltimora's famous track "Tarzan Boy".</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Section Spotify -->
+        <div class="spotify-section">
+            <div class="spotify-grid">
+                <!-- Album 1: Kill The Lights -->
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/4hA5DwywIcObqzm756jW16?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                
+                <!-- Album 2: Lost in City Lights -->
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/0pBhe7DU4IrZZgDdq4dvhZ?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <!-- Section vidéos -->
+        <div class="video-section">
+            <div class="video-grid">
+                <!-- Vidéo 1 -->
+                <div class="video-wrapper">
+                    <a href="https://www.youtube.com/watch?v=4k5HzOe4PsM" target="_blank" class="video-link" rel="noopener noreferrer">
+                        <img src="https://i.ytimg.com/vi/4k5HzOe4PsM/hqdefault.jpg" alt="Watch Dead End Countdown">
+                        <i class="fa-brands fa-youtube play-button"></i>
+                    </a>
+                </div>
+
+                <!-- Vidéo 2 -->
+                <div class="video-wrapper">
+                    <a href="https://www.youtube.com/watch?v=-2wRG2SC7EA" target="_blank" class="video-link" rel="noopener noreferrer">
+                        <img src="https://i.ytimg.com/vi/-2wRG2SC7EA/hqdefault.jpg" alt="Watch Heatwave">
+                        <i class="fa-brands fa-youtube play-button"></i>
+                    </a>
+                </div>
+
+                <!-- Vidéo 3 -->
+                <div class="video-wrapper">
+                    <a href="https://www.youtube.com/watch?v=hqYbEMHqN9k" target="_blank" class="video-link" rel="noopener noreferrer">
+                        <img src="https://i.ytimg.com/vi/hqYbEMHqN9k/hqdefault.jpg" alt="Watch The Hype">
+                        <i class="fa-brands fa-youtube play-button"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact footer -->
+        <div class="footer-bottom">
+            <div class="contact-box">
+                <div class="contact-col">
+                    <img src="assets/cassette-graphic.png" alt="Cassette Tape" class="contact-cassette">
+                </div>
+
+                <div class="contact-col contact-text-col">
+                    <h2 class="highlight-cyan">BAND CONTACT</h2>
+                    <p><a href="mailto:thenewcitiesofficial@gmail.com" class="contact-link">thenewcitiesofficial@gmail.com</a></p>
+                </div>
+
+                <div class="contact-col contact-text-col">
+                    <h2 class="highlight-cyan">BOOKING</h2>
+                    <p>Guy Ritchot | <a href="mailto:chef@lourslabel.com" class="contact-link">chef@lourslabel.com</a> | (514) 962-1351</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
