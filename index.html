@@ -66,6 +66,7 @@
         }
 
         .highlight-cyan { color: var(--neon-cyan); }
+        .highlight-cyan-center { color: var(--neon-cyan);}
         .highlight-pink { color: var(--neon-pink); }
 
         /* --- Achievements List --- */
@@ -106,6 +107,7 @@
             justify-content: center;
             margin-top: 25px;
             margin-bottom: 10px;
+            padding-inline: 20px;
         }
 
         .social-link {
@@ -267,6 +269,7 @@
             .video-grid { grid-template-columns: 1fr; } /* Vidéos s'empilent sur mobile */
             .contact-box { flex-direction: column; text-align: center; gap: 20px; }
             .contact-text-col { text-align: center; } /* Le texte se centre sur mobile */
+            .highlight-cyan-center { text-align: center; } /* Le texte se centre sur mobile */
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -323,6 +326,7 @@
         
         <!-- Section Spotify -->
         <div class="spotify-section">
+            <h2 class="highlight-cyan-center">LISTEN</h2>
             <div class="spotify-grid">
                 <!-- Album 1: Kill The Lights -->
                 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/4hA5DwywIcObqzm756jW16?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
@@ -334,6 +338,7 @@
 
         <!-- Section vidéos -->
         <div class="video-section">
+            <h2 class="highlight-cyan-center">WATCH</h2>
             <div class="video-grid">
                 <!-- Vidéo 1 -->
                 <div class="video-wrapper">
