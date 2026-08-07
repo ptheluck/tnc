@@ -174,7 +174,7 @@
 
   .hero__content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;}
 
-  .hero__cta{display:flex;gap:18px;margin-top:40px;flex-wrap:wrap;justify-content:center;}
+  .hero__cta{display:flex;gap:18px;margin-top:500px;flex-wrap:wrap;justify-content:center;}
 
   .btn{
     font-family:var(--eyebrow);font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:.85rem;
@@ -203,7 +203,8 @@
   @keyframes tickerScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
   /* ================= ABOUT ================= */
-  .about{background:var(--bg);}
+  /* .about{background:linear-gradient(180deg, var(--bg-soft), var(--bg));position:relative;} */
+  .about{background:var(--bg-soft);}
   .about__text p{color:var(--muted);font-size:1.05rem;margin:0 0 18px;}
   .about__text p:first-of-type{color:var(--ink);font-size:1.18rem;}
 
@@ -255,8 +256,15 @@
     .spotify-grid{grid-template-columns:1fr;}
   }
 
+  /* ================= TOUR ================= */
+  /* .tour{background:linear-gradient(180deg, var(--bg-soft), var(--bg));position:relative;} */
+  .tour{background:var(--bg);}
+  .tour__text p{color:var(--muted);font-size:1.05rem;margin:0 0 18px;}
+  .tour__text p:first-of-type{color:var(--ink);font-size:1.18rem;}
+
   /* ================= CONTACT ================= */
-  .contact{background:linear-gradient(180deg, var(--bg-soft), var(--bg));position:relative;}
+  /* .contact{background:linear-gradient(180deg, var(--bg-soft), var(--bg));position:relative;} */
+  .contact{background:var(--bg);}
   .contact__grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
   .contact-card{
     background:var(--panel);border:1px solid var(--panel-line);padding:36px 32px;border-radius:4px;position:relative;overflow:hidden;
@@ -308,6 +316,7 @@
     <a href="#top" class="nav__logo">THE NEW CITIES</a>
     <nav class="nav__links">
       <a href="#music" data-nav>Music</a>
+      <a href="#tour" data-nav>Tour</a>
       <a href="#about" data-nav>About</a>
       <a href="#contact" data-nav>Contact</a>
     </nav>
@@ -327,6 +336,7 @@
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" id="menuClose" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4l16 16M20 4L4 20"/></svg></button>
   <a href="#music" data-nav>Music</a>
+  <a href="#tour" data-nav>Tour</a>
   <a href="#about" data-nav>About</a>
   <a href="#contact" data-nav>Contact</a>
   <div class="nav__social">
@@ -418,6 +428,18 @@
   </div>
 </section>
 
+<!-- ============ TOUR ============ -->
+<section class="tour section-pad" id="tour">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Tour</div>
+    </div>
+    <div class="tour__text reveal">
+      <p>TBA - Summer 2027</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============ ABOUT ============ -->
 <section class="about section-pad" id="about">
   <div class="wrap">
@@ -481,8 +503,9 @@
       <div class="footer__links">
         <div class="footer__col">
           <h4>Site</h4>
-          <a href="#about">About</a>
           <a href="#music">Music</a>
+          <a href="#tour">Tour</a>
+          <a href="#about">About</a>
           <a href="#contact">Contact</a>
         </div>
         <div class="footer__col">
@@ -526,7 +549,7 @@
   revealEls.forEach(el => io.observe(el));
 
   // active nav link on scroll
-  const sections = ['music','about','contact'].map(id => document.getElementById(id));
+  const sections = ['music','tour','about','contact'].map(id => document.getElementById(id));
   const navLinks = document.querySelectorAll('a[data-nav]');
   const navIo = new IntersectionObserver((entries) => {
     entries.forEach(e => {
