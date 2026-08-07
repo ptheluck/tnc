@@ -556,7 +556,7 @@
           controls: 0,
           rel: 0,
           playsinline: 1,
-          start: 8,   // Start at 0:08
+          start: 17,  // Start at 0:08
           end: 93     // End at 1:33
         },
         events: {
@@ -571,8 +571,8 @@
               // Calculate time elapsed since page load
               var elapsed = Date.now() - initTime;
 
-              // Ensure we wait at least 1000ms (1 second) total
-              var delay = Math.max(0, 1000 - elapsed);
+              // Ensure we wait at least 600ms (0.6 second) total
+              var delay = Math.max(0, 600 - elapsed);
 
               setTimeout(function() {
                 var placeholder = document.getElementById('videoPlaceholder');
@@ -582,9 +582,9 @@
               }, delay);
             }
 
-            // Loop video back to 0:08 when it reaches 1:33
+            // Loop video back to 0:17 when it reaches 1:33
             if (e.data === YT.PlayerState.ENDED) {
-              heroPlayer.seekTo(8);
+              heroPlayer.seekTo(17);
               heroPlayer.playVideo();
             }
           }
