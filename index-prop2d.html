@@ -347,17 +347,6 @@
   <img src="assets/logo27.jpg" id="videoPlaceholder" class="hero__placeholder" alt="The New Cities">
   <div class="hero__overlay"></div>
 
-  <div class="hero__video-wrap">
-    <iframe
-      src="https://www.youtube.com/embed/R22JulmEmP8?autoplay=1&mute=1&loop=1&playlist=R22JulmEmP8&controls=0&rel=0&playsinline=1"
-      title="Background Video"
-      frameborder="0"
-      allow="autoplay; encrypted-media; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-  </div>
-  <div class="hero__overlay"></div>
-
   <div class="hero__content">
     <div class="hero__cta">
       <a href="#music" class="btn btn--primary">Listen Now</a>
@@ -554,38 +543,53 @@
   var firstScriptTag = document.getElementsByTagName('script')[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-  var heroPlayer;
-  function onYouTubeIframeAPIReady() {
-    heroPlayer = new YT.Player('hero-player', {
-      videoId: 'R22JulmEmP8',
-      playerVars: {
-        autoplay: 1,
-        mute: 1,
-        controls: 0,
-        rel: 0,
-        playsinline: 1,
-        start: 8,   // Start at 0:08
-        end: 93     // End at 1:33
-      },
-      events: {
-        'onReady': function(e) {
-          e.target.mute();
-          e.target.playVideo();
-        },
-        'onStateChange': function(e) {
-          // Hide placeholder when video actually starts playing
-          if (e.data === YT.PlayerState.PLAYING) {
-            document.getElementById('videoPlaceholder').classList.add('hidden');
-          }
+    // Track exactly when the script is initialized
+    var initTime = Date.now();
+    var heroPlayer;
 
-          // Loop video back to 0:08 when it reaches 1:33
-          if (e.data === YT.PlayerState.ENDED) {
-            heroPlayer.seekTo(8);
-            heroPlayer.playVideo();
+    function onYouTubeIframeAPIReady() {
+      heroPlayer = new YT.Player('hero-player', {
+        videoId: 'R22JulmEmP8',
+        playerVars: {
+          autoplay: 1,
+          mute: 1,
+          controls: 0,
+          rel: 0,
+          playsinline: 1,
+          start: 8,   // Start at 0:08
+          end: 93     // End at 1:33
+        },
+        events: {
+          'onReady': function(e) {
+            e.target.mute();
+            e.target.playVideo();
+          },
+          'onStateChange': function(e) {
+            // Wait for the video to actually start playing
+            if (e.data === YT.PlayerState.PLAYING) {
+
+              // Calculate time elapsed since page load
+              var elapsed = Date.now() - initTime;
+
+              // Ensure we wait at least 1000ms (1 second) total
+              var delay = Math.max(0, 1000 - elapsed);
+
+              setTimeout(function() {
+                var placeholder = document.getElementById('videoPlaceholder');
+                if (placeholder) {
+                  placeholder.classList.add('hidden');
+                }
+              }, delay);
+            }
+
+            // Loop video back to 0:08 when it reaches 1:33
+            if (e.data === YT.PlayerState.ENDED) {
+              heroPlayer.seekTo(8);
+              heroPlayer.playVideo();
+            }
           }
         }
-      }
-    });
+      });
   }
 </script>
 
