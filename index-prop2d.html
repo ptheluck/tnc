@@ -208,35 +208,11 @@
   .scrolldown{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;color:var(--muted-2);animation:bob 2.2s ease-in-out infinite;}
   @keyframes bob{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,8px);}}
 
-  /* ================= TICKER ================= */
-  .ticker{
-    position:relative;z-index:3;background:var(--bg-soft);border-top:1px solid var(--panel-line);border-bottom:1px solid var(--panel-line);
-    padding:16px 0;overflow:hidden;white-space:nowrap;
-  }
-  .ticker__track{display:inline-flex;width:max-content;animation:tickerScroll 32s linear infinite;will-change:transform;}
-  .ticker__track span{
-    font-family:var(--eyebrow);font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:.85rem;color:var(--muted);
-    padding:0 26px;display:inline-flex;align-items:center;gap:26px;
-  }
-  .ticker__track span b{color:var(--ink);font-weight:700;}
-  .ticker__track span::after{content:"◆";color:var(--pink);font-size:.6rem;}
-  @keyframes tickerScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-
   /* ================= ABOUT ================= */
   /* .about{background:linear-gradient(180deg, var(--bg-soft), var(--bg));position:relative;} */
   .about{background:var(--bg-soft);}
   .about__text p{color:var(--muted);font-size:1.05rem;margin:0 0 18px;}
   .about__text p:first-of-type{color:var(--ink);font-size:1.18rem;}
-
-  .feature-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;}
-  .feature-card{
-    background:var(--panel);border:1px solid var(--panel-line);padding:28px 24px;border-radius:4px;
-    transition:transform .25s ease, border-color .25s ease;
-  }
-  .feature-card:hover{transform:translateY(-6px);border-color:var(--pink-dim);}
-  .feature-card svg{width:30px;height:30px;color:var(--pink);margin-bottom:16px;}
-  .feature-card h3{font-size:1.05rem;letter-spacing:.05em;margin-bottom:10px;}
-  .feature-card p{color:var(--muted);font-size:.94rem;margin:0;}
 
   @media(max-width:1200px){
     .feature-row{grid-template-columns:1fr;}
@@ -441,21 +417,6 @@
     </svg>
   </a>
 </section>
-
-<!-- ============ TICKER ============ -->
-<div class="ticker">
-  <div class="ticker__track">
-    <span><b>Gold Record</b> for <em>Dead End Countdown</em></span>
-    <span><b>Socan</b> Songwriting Award</span>
-    <span><b>JUNO · ADISQ · MMVA</b> Nominees</span>
-    <span>On Stage With Katy Perry, Simple Plan, Avril Lavigne &amp; Metric</span>
-    <span><b>Gold Record</b> for <em>Dead End Countdown</em></span>
-    <span><b>Socan</b> Songwriting Award</span>
-    <span><b>JUNO · ADISQ · MMVA</b> Nominees</span>
-    <span>On Stage With Katy Perry, Simple Plan, Avril Lavigne &amp; Metric</span>
-  </div>
-</div>
-
 <!-- ============ MUSIC ============ -->
 <section class="music section-pad" id="music">
   <div class="wrap">
@@ -541,31 +502,6 @@
     <div class="about__text reveal">
       <p>Originally from Trois-Rivières, the band established itself as a major player in the 2010s Canadian music scene. Their unique style blends classic synth-pop with dance and punk energy. This signature sound earned them appearances in cult television series such as “Gossip Girl” and “Degrassi”.</p>
       <p>Renowned for their explosive live performances, they shared the stage with international stars such as Katy Perry, Simple Plan and Metric. In 2011, following the release of their second album, <em>Kill the Lights</em>, they opened for Avril Lavigne's Canadian tour (Black Star Tour), cementing their presence after two years of intensive touring in Canada, France, and the United Kingdom.</p>
-    </div>
-
-    <div class="feature-row">
-      <div class="feature-card reveal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <circle cx="12" cy="12" r="9.2"/>
-            <circle cx="12" cy="12" r="3"/>
-        </svg>
-        <h3>Gold Record</h3>
-        <p>Gold certification for <em>Dead End Countdown</em>.</p>
-      </div>
-      <div class="feature-card reveal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M12 2.5l2.9 6 6.6.7-5 4.5 1.4 6.5-5.9-3.5-5.9 3.5 1.4-6.5-5-4.5 6.6-.7z"/>
-        </svg>
-        <h3>Awards</h3>
-        <p>A SOCAN songwriting award, plus nominations from the JUNOs, ADISQ, and MuchMusic Video Awards.</p>
-      </div>
-      <div class="feature-card reveal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M13 2L4 14h6l-1 8 9-12h-6z"/>
-        </svg>
-        <h3>Collaborations</h3>
-        <p>The single <em>Heatwave</em> was co-written with the collective The Matrix and features a melody from Baltimora's famous track <em>Tarzan Boy</em>.</p>
-      </div>
     </div>
   </div>
 </section>
