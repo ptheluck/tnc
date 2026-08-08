@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The New Cities - Official Website</title>
+<title>STEP#2 - The New Cities - Official Website</title>
 <meta name="description" content="Official site of The New Cities — Canadian synth rock.">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
@@ -734,6 +734,17 @@
         }
       });
   }
+  // Safety net: some mobile browsers still block muted autoplay until the
+  // user has interacted with the page at least once. If that happens, the
+  // player sits paused (showing YouTube's title/logo overlay) until then.
+  // The first tap/click/scroll anywhere retries playback.
+  ['touchstart', 'click', 'scroll'].forEach(function(evt){
+    window.addEventListener(evt, function tryPlay(){
+      if (heroPlayer && typeof heroPlayer.playVideo === 'function') {
+        heroPlayer.playVideo();
+      }
+    }, {once:true, passive:true});
+  });
 </script>
 
 </body>
