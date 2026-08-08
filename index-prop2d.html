@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STEP#4 - The New Cities - Official Website</title>
+<title>The New Cities - Official Website</title>
 <meta name="description" content="Official site of The New Cities — Canadian synth rock.">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -157,6 +158,10 @@
   .hero__placeholder.hidden {
     opacity: 0;
     pointer-events: none;
+  }
+
+  @media(max-width:760px){
+    .hero__placeholder{object-fit:contain;background:var(--bg);}
   }
 
   /* Video Background Wrapper */
@@ -691,7 +696,7 @@
           controls: 0,
           rel: 0,
           playsinline: 1,
-          start: 17,  // Start at 0:08
+          start: 18,  // Start at 0:08
           end: 93,    // End at 1:33
           iv_load_policy: 3, // Masque les annotations et cartes
         },
@@ -720,24 +725,13 @@
 
             // Loop video back to 0:17 when it reaches 1:33
             if (e.data === YT.PlayerState.ENDED) {
-              heroPlayer.seekTo(17);
+              heroPlayer.seekTo(18);
               heroPlayer.playVideo();
             }
           }
         }
       });
   }
-  // Safety net: some mobile browsers still block muted autoplay until the
-  // user has interacted with the page at least once. If that happens, the
-  // player sits paused (showing YouTube's title/logo overlay) until then.
-  // The first tap/click/scroll anywhere retries playback.
-  ['touchstart', 'click', 'scroll'].forEach(function(evt){
-    window.addEventListener(evt, function tryPlay(){
-      if (heroPlayer && typeof heroPlayer.playVideo === 'function') {
-        heroPlayer.playVideo();
-      }
-    }, {once:true, passive:true});
-  });
 </script>
 
 </body>
