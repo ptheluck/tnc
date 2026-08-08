@@ -165,7 +165,7 @@
     inset:0;
     width:100%;
     height:100%;
-    overflow:hidden; /* Crucial : c'est ce qui coupe les bordures de la vidéo */
+    overflow:hidden;
     pointer-events:none;
     z-index:1;
   }
@@ -178,10 +178,16 @@
     min-height:100svh;
     min-width:177.77svh;
     transform: translate(-50%, -50%);
-    pointer-events: none;
   }
   .hero__overlay{
     position:absolute;inset:0;background:rgba(7,6,11,0.55);z-index:1;
+  }
+
+  @media(max-width:760px){
+    .hero__placeholder{object-fit:contain;background:var(--bg);}
+    .hero__video-wrap iframe{
+      width:100vw;height:56.25vw;min-height:0;min-width:0;
+    }
   }
 
   .hero__content{
@@ -692,9 +698,7 @@
           rel: 0,
           playsinline: 1,
           start: 17,  // Start at 0:08
-          end: 93,    // End at 1:33
-          modestbranding: 1, // Réduit la présence du logo YouTube
-          iv_load_policy: 3, // Masque les annotations et cartes
+          end: 93     // End at 1:33
         },
         events: {
           'onReady': function(e) {
